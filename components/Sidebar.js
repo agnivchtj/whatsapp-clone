@@ -45,6 +45,7 @@ const Sidebar = () => {
     // Sign out function
     const signOut = () => {
         auth.signOut();
+        window.location.href = '/';
     }
 
     // Check if 1-1 chat already exists

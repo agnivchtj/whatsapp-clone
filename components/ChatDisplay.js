@@ -12,14 +12,14 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
 import TimeAgo from 'timeago-react';
 import Message from './Message';
+import { useEffect } from 'react';
 
 
-const ChatDisplay = ({ messages, chat, contactEmail }) => {
+const ChatDisplay = ({ messages, contactEmail }) => {
     const router = useRouter();
     const [user] = useAuthState(auth);
     const [input, setInput] = useState('');
     const endOfMsgRef = useRef(null);
-
 
     const [contactData] = useCollection(
         db
@@ -59,6 +59,10 @@ const ChatDisplay = ({ messages, chat, contactEmail }) => {
         }
     }
 
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages, messagesData]);
+
     const scrollToBottom = () => {
         endOfMsgRef.current.scrollIntoView({
             behavior: 'smooth', 
@@ -86,7 +90,6 @@ const ChatDisplay = ({ messages, chat, contactEmail }) => {
 
         // Empty out input & scroll to bottom
         setInput('');
-        scrollToBottom();
     }
 
 

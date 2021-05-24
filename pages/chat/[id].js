@@ -17,7 +17,7 @@ const Chat = ({ messages, chat }) => {
             </Head>
             <Sidebar />
             <ChatContainer>
-                <ChatDisplay messages={messages} chat={chat} contactEmail={contact} />
+                <ChatDisplay messages={messages} contactEmail={contact} />
             </ChatContainer>
         </Container>
     );

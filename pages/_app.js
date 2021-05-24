@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import '../styles/globals.css';
+import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase';
 import { db, auth } from '../firebase';
@@ -22,7 +23,11 @@ const MyApp = ({ Component, pageProps }) => {
   }, [user]);
 
   if (loading) return <Loading />;
-  if (!user) return <Login />;
+  if (!user) return (
+    <Link href='/'>
+      <Login />
+    </Link>
+  );
 
   return <Component {...pageProps} />;
 }

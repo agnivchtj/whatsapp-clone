@@ -2,14 +2,12 @@ import styled from 'styled-components';
 import { db, auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Avatar } from '@material-ui/core';
 
 
 const Chat = ({ id, users }) => {
-    const router = useRouter();
     const [user] = useAuthState(auth);
-
 
     const contactEmail = users?.filter(i => i !== user?.email)[0];
     const [contactData] = useCollection(
@@ -20,22 +18,19 @@ const Chat = ({ id, users }) => {
     const contact = contactData?.docs?.[0]?.data();
 
 
-    const seeChat = () => {
-        router.push(`/chat/${id}`);
-    }
-
-
     return (
-        <Container onClick={seeChat}>
-            {
-                contact ? (
-                    <UserIcon src={contact?.photoURL} />
-                ) : (
-                    <UserIcon>{ contactEmail[0] }</UserIcon>
-                )
-            }
-            <p>{ contactEmail }</p>
-        </Container>
+        <Link href={`/chat/${id}`}>
+            <Container>
+                {
+                    contact ? (
+                        <UserIcon src={contact?.photoURL} />
+                    ) : (
+                        <UserIcon>{ contactEmail[0] }</UserIcon>
+                    )
+                }
+                <p>{ contactEmail }</p>
+            </Container>
+        </Link>
     );
 }
 

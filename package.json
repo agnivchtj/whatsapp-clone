@@ -13,6 +13,7 @@
     "@material-ui/icons": "^4.11.3",
     "autoprefixer": "10.4.20",
     "better-react-spinkit": "^2.0.4",
+    "dotenv": "^16.4.5",
     "email-validator": "^2.0.4",
     "firebase": "^10.14.0",
     "moment": "^2.30.1",
